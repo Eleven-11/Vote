@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--mapper映射-->
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.system.TpQuestionnaireTemplateMapper">
+    <!--结果集映射-->
+    <resultMap id="ResultMap" type="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireTemplate">
+        <id column="templateId" property="templateId" jdbcType="INTEGER"/>
+        <result column="titleId" property="titleId" jdbcType="INTEGER"/>
+        <result column="templateTitle" property="templateTitle" jdbcType="VARCHAR"/>
+        <result column="generationDate" property="generationDate" jdbcType="TIMESTAMP"></result>
+        <result column="roofPlacement" property="roofPlacement" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="ResultMap" >
+
+        SELECT
+        t.templateId,
+        c.titleId,
+        t.templateTitle templateTitle,
+        t.generationDate generationDate,
+        b.resName roofPlacement
+        from tp_questionnaire_template as t,tp_questionnaire_title as c,tp_resourcelist as b
+        WHERE t.titleId=c.titleId and b.id=t.roofPlacement
+        order by roofPlacement desc,generationDate desc
+        limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+        <!--    select <include refid="list"/>-->
+        <!--    from  tp_questionnaire_status-->
+    </select>
+    <select id="countGetAll" parameterType="map" resultType="Integer">
+        select count(1) from tp_questionnaire_template as t
+        where 1=1
+        <if test="templateId != null and templateId != ''">
+            and t.templateId = #{templateId,jdbcType=INTEGER}
+        </if>
+
+
+    </select>
+
+    <insert id="add" parameterType="com.gameloft9.demo.dataaccess.model.tp.TpquestionnaireTitle" useGeneratedKeys="true" keyProperty="titleId">
+        insert into tp_questionnaire_title(title,statementVote,numberVote)
+        values (#{title},#{statementVote},#{numberVote})
+    </insert>
+
+    <insert id="add1" parameterType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireQuestion"
+            useGeneratedKeys="true" keyProperty="questionId">
+        insert into tp_questionnaire_question(question,titleId,optionRule)
+        values (#{question},#{titleId},#{optionRule})
+    </insert>
+
+    <insert id="add2" parameterType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireOption" useGeneratedKeys="true" keyProperty="optionId">
+        insert into tp_questionnaire_option(`option`,questionId)
+        values (#{option},#{questionId})
+    </insert>
+    <insert id="add3" parameterType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireStatus" useGeneratedKeys="true" keyProperty="statusId">
+        insert into tp_questionnaire_status (history,publicationDate,status)
+        values (#{history},#{publicationDate},#{status})
+    </insert>
+    <insert id="add4" parameterType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireTemplate" useGeneratedKeys="true" keyProperty="templateId">
+        insert into tp_questionnaire_template (titleId,templateTitle,generationDate,roofPlacement)
+        values (#{titleId},#{templateTitle},#{generationDate},#{roofPlacement})
+    </insert>
+
+
+
+
+    <update id="update" parameterType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireTemplate">
+        update tp_questionnaire_template set roofPlacement = 53
+        where templateId = #{templateId,jdbcType=INTEGER }
+    </update>
+    <update id="update1" parameterType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireTemplate">
+        update tp_questionnaire_template set roofPlacement = 52
+        where templateId = #{templateId,jdbcType=INTEGER }
+    </update>
+
+
+
+
+    <select id="findtemplateId" parameterType="java.lang.Integer" resultType="INTEGER">
+        select titleId from tp_questionnaire_template
+        where templateId = #{0}
+    </select>
+    <select id="findquestionId" parameterType="java.lang.Integer" resultType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireQuestion">
+        select questionId from tp_questionnaire_question
+        where titleId = #{0}
+    </select>
+    <select id="findoptionId" parameterType="java.lang.Integer" resultType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireOption">
+        select optionId from tp_questionnaire_option
+        where questionId = #{0}
+    </select>
+    <delete id="delete1" parameterType="java.lang.Integer">
+        delete from tp_questionnaire_option
+        where questionId = #{questionId }
+    </delete>
+    <delete id="delete2" parameterType="java.lang.Integer">
+        delete from tp_questionnaire_question
+        where titleId = #{titleId }
+    </delete>
+    <delete id="delete3" parameterType="java.lang.Integer">
+        delete from tp_questionnaire_template
+        where templateId = #{0 }
+    </delete>
+    <delete id="delete4" parameterType="java.lang.Integer">
+         delete from  tp_questionnaire_title
+        where titleId = #{0}
+    </delete>
+
+
+
+    <select id="findTid" parameterType="java.lang.Integer" resultType="INTEGER">
+        select titleId from tp_questionnaire_template
+        where templateId=#{0}
+    </select>
+    <select id="findId" parameterType="java.lang.Integer" resultType="com.gameloft9.demo.dataaccess.model.tp.TpquestionnaireTitle">
+        select titleId,title,statementVote,numberVote from  tp_questionnaire_title
+        where titleId = #{titleId}
+    </select>
+    <select id="findId1" parameterType="java.lang.Integer" resultType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireQuestion">
+        select questionId,question,optionRule from tp_questionnaire_question
+        where titleId=#{titleId}
+    </select>
+    <select id="findId2" parameterType="java.lang.Integer" resultType="com.gameloft9.demo.dataaccess.model.tp.TpQuestionnaireOption">
+        select `option` from tp_questionnaire_option
+        where   questionId=#{questionId}
+    </select>
+
+
+</mapper>

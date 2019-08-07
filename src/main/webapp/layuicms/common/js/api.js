@@ -99,17 +99,32 @@ layui.define(['$tool','jquery'], function (exports) {
         GetAllOrg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'org/getAll.do',req,successCallback,errorCallback);
         },
+        GetallOrg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'depart/All.do',req,successCallback,errorCallback);
+        },
         GetOrg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'org/get.do',req,successCallback,errorCallback);
+        },
+        Getorg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'depart/get.do',req,successCallback,errorCallback);
         },
         AddOrg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'org/add.do',req,successCallback,errorCallback);
         },
+        Addorg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'depart/add.do',req,successCallback,errorCallback);
+        },
         UpdateOrg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'org/update.do',req,successCallback,errorCallback);
         },
+        Updateorg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'depart/update.do',req,successCallback,errorCallback);
+        },
         DeleteOrg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'org/delete.do',req,successCallback,errorCallback);
+        },
+        Deleteorg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'depart/delete.do',req,successCallback,errorCallback);
         },
         AddRole:function(req,successCallback,errorCallback){
             doPost($tool.getContext()+'role/add.do',req,successCallback,errorCallback);
@@ -130,7 +145,7 @@ layui.define(['$tool','jquery'], function (exports) {
             doPost($tool.getContext() + 'sysUser/delete.do',req,config,successCallback,errorCallback);
         },
         InitPwd:function(req,successCallback,errorCallback){
-            doPost($tool.getContext() + 'sysUser/initPwd.do',req,successCallback,errorCallback);
+            doPost($tool.getContext() + 'Template/update3',req,successCallback,errorCallback);
         },
         GetUser:function(req,successCallback,errorCallback){
             doPost($tool.getContext()+'sysUser/get.do',req,successCallback,errorCallback);
@@ -143,7 +158,53 @@ layui.define(['$tool','jquery'], function (exports) {
         },
         UpdateUserInfo:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'personCenter/update.do',req,config,successCallback,errorCallback);
-        }
+        },
+        DeleteStatus:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'WJ/delete.do',req,config,successCallback,errorCallback);
+        },
+        UpdateStatus:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'WJ/update.do',req,config,successCallback,errorCallback);
+        },
+
+        Add:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'WJ/add.do',req,config,successCallback,errorCallback);
+        },
+        Add1:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'WJ/add1.do',req,config,successCallback,errorCallback);
+        },
+        Account:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'WJ/Account.do',req,config,successCallback,errorCallback);
+        },
+        CCC:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'WJ/Tijiao.do',req,config,successCallback,errorCallback);
+        },
+        UpdateVote:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'WJ/updateVote.do',req,config,successCallback,errorCallback);
+        },
+        Baocun:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'Template/add2.do',req,config,successCallback,errorCallback);
+        },
+        UpdateRoofPlacement:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'Template/update1.do',req,config,successCallback,errorCallback);
+        },
+        UpdateRoofPlacement1:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'Template/update2.do',req,config,successCallback,errorCallback);
+        },
+        DeleteT:function(req,config,successCallback,errorCallback){
+            doPost($tool.getContext() + 'Template/delete2.do',req,config,successCallback,errorCallback);
+        },
+        GetTitle:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'Template/getAll.do',req,successCallback,errorCallback);
+        },
+        GetAll:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'WJ/Get.do',req,successCallback,errorCallback);
+        },
+        Count:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'WJ/Count.do',req,successCallback,errorCallback);
+        },
+        UpdateTemplate:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'Template/update3.do',req,config,successCallback,errorCallback);
+        },
     };
 
 

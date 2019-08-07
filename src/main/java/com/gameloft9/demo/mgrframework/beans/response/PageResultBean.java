@@ -60,4 +60,8 @@ public class PageResultBean<T> extends AbstractResult  implements Serializable{
         this.msg = msg;
         this.code = code;
     }
+
+    public PageResultBean(T all) {
+        super();
+    }
 }

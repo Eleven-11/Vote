@@ -1,7 +1,8 @@
 package com.gameloft9.demo.service.api.system;
 
 import com.gameloft9.demo.dataaccess.model.system.SysOrganizeTest;
-import com.gameloft9.demo.service.beans.system.OrgNodeResponse;
+import com.gameloft9.demo.dataaccess.model.tp.TpDepartment;
+import com.gameloft9.demo.dataaccess.model.tp.OrgNodeResponse;
 
 import java.util.List;
 

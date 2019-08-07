@@ -4,7 +4,7 @@ import com.gameloft9.demo.dataaccess.model.system.SysOrganizeTest;
 import com.gameloft9.demo.mgrframework.beans.response.IResult;
 import com.gameloft9.demo.mgrframework.beans.response.ResultBean;
 import com.gameloft9.demo.service.api.system.SysOrgService;
-import com.gameloft9.demo.service.beans.system.OrgNodeResponse;
+import com.gameloft9.demo.dataaccess.model.tp.OrgNodeResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
