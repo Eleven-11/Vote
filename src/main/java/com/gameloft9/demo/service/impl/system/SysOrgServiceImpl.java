@@ -3,7 +3,7 @@ package com.gameloft9.demo.service.impl.system;
 import com.gameloft9.demo.dataaccess.dao.system.SysOrganizeTestMapper;
 import com.gameloft9.demo.dataaccess.model.system.SysOrganizeTest;
 import com.gameloft9.demo.service.api.system.SysOrgService;
-import com.gameloft9.demo.service.beans.system.OrgNodeResponse;
+import com.gameloft9.demo.dataaccess.model.tp.OrgNodeResponse;
 import com.gameloft9.demo.utils.Constants;
 import com.gameloft9.demo.utils.NumberUtil;
 import com.gameloft9.demo.utils.UUIDUtil;
@@ -92,7 +92,7 @@ public class SysOrgServiceImpl implements SysOrgService {
         if(StringUtils.isBlank(org.getParentId())){
             log.info("添加根机构");
             test = sysOrganizeTestMapper.getRoot();
-            CheckUtil.check(test == null,"根组织机构已经存在");
+            CheckUtil.check(test == null,"请选择父机构");
 
             org.setId(UUIDUtil.getUUID());
             org.setOrganizeCode(generateOrgCode(org));
