@@ -169,6 +169,42 @@ layui.define(['$tool','jquery'], function (exports) {
         UpdateRole:function(req,successCallback,errorCallback){
             doPost($tool.getContext()+'role/update.do',req,successCallback,errorCallback);
         },
+        AddDemo:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'record/add.do',req,config,successCallback,errorCallback);
+        },
+        Addtemp:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'template/add.do',req,config,successCallback,errorCallback);
+        },
+        Deletedemo:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'record/delete.do',req,successCallback,errorCallback);
+        },
+        Deletetemp:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'template/delete.do',req,successCallback,errorCallback);
+        },
+        qxzd:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'template/qxzd.do',req,successCallback,errorCallback);
+        },
+        zd:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'template/zd.do',req,successCallback,errorCallback);
+        },
+        Guanbidemo:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'record/guanbi.do',req,successCallback,errorCallback);
+        },
+        jiaoyan:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'record/jiaoyan.do',req,config,successCallback,errorCallback);
+        },
+        Gettemp:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'template/get.do',req,successCallback,errorCallback);
+        },
+        Getrecord:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'record/get.do',req,successCallback,errorCallback);
+        },
+        Updatedemo:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'record/update.do',req,successCallback,errorCallback);
+        },
+        TijiaoDemo:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext()+'record/submit.do',req,config,successCallback,errorCallback);
+        },
         AddUser:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'sysUser/add.do',req,config,successCallback,errorCallback);
         },

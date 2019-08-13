@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.system.TpVerificationMapper">
+    <insert id="addVerification" parameterType="com.gameloft9.demo.dataaccess.model.system.TpVerification" useGeneratedKeys="true" keyProperty="yid">
+        insert into tp_democratic_verification (content,recordId,isVote,id)
+        values (#{content},#{recordId},#{isVote},#{id})
+    </insert>
+    <select id="findbycontent" parameterType="java.lang.String" resultType="com.gameloft9.demo.dataaccess.model.system.TpVerification">
+               SELECT yid,recordId,isVote,id FROM  tp_democratic_verification WHERE content= #{content,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteVer" parameterType="java.lang.String">
+        DELETE from tp_democratic_verification where content= #{content,jdbcType=VARCHAR}
+    </delete>
+</mapper>
+
