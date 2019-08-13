@@ -116,7 +116,7 @@
       <version>1.12.4</version>
     </dependency>
     <!--mybatis-->
-    <dependency>F
+    <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
       <version>3.2.7</version>

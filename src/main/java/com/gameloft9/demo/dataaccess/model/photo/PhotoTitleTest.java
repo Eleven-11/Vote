@@ -23,6 +23,8 @@ public class PhotoTitleTest implements Serializable {
     private int optionRule;
     private int isChar;
     private List<PhotoAnswerTest> answerList;
+
+
 //    private List<PhotoContentTest> contentList;
 //    List<PhotoAnswerTest> list = new ArrayList<PhotoAnswerTest>();
 //    List<PhotoContentTest>list1= new ArrayList<PhotoContentTest>();

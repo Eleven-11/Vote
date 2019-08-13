@@ -50,23 +50,22 @@ public class PhotoUserController {
     }
 
     /**
-     * 添加学生
+     * 添加用户
      * */
     @RequestMapping(value = "/add.do",method = RequestMethod.POST)
     @ResponseBody
-    @BizOperLog(operType = OperType.ADD,memo = "添加学生")
+    @BizOperLog(operType = OperType.ADD,memo = "添加用户")
     public IResult addStudent(@RequestBody PhotoUserTest photoUserTest){
-        System.out.println("dddd");
         //返回json至前端的均返回ResultBean或者PageResultBean
         return new ResultBean<String>(photoUserServiceImpl.addUser(photoUserTest));
     }
 
     /**
-     * 删除学生
+     * 删除用户
      * */
     @RequestMapping(value = "/deleteUser.do",method = RequestMethod.POST)
     @ResponseBody
-    @BizOperLog(operType = OperType.DELETE,memo = "删除菜单")
+    @BizOperLog(operType = OperType.DELETE,memo = "删除用户")
     public IResult deleteUser(int uid){
         //返回json至前端的均返回ResultBean或者PageResultBean
         System.out.println("11111");
@@ -74,7 +73,7 @@ public class PhotoUserController {
     }
 
     /**
-     * 获取菜单
+     * 获取用户
      * */
     @RequestMapping(value = "/get.do",method = RequestMethod.POST)
     @ResponseBody
@@ -96,11 +95,11 @@ public class PhotoUserController {
     }
 
     /**
-     * 更新菜单
+     * 更新用户
      * */
     @RequestMapping(value = "/update.do",method = RequestMethod.POST)
     @ResponseBody
-    @BizOperLog(operType = OperType.UPDATE,memo = "更新菜单")
+    @BizOperLog(operType = OperType.UPDATE,memo = "更新用户")
     public IResult updateMenu(@RequestBody PhotoUserTest photoUserTest){//传递了数组，前台放在payload里面了，后台通过@RequestBody获取
         //返回json至前端的均返回ResultBean或者PageResultBean
         return new ResultBean<String>(photoUserServiceImpl.update(photoUserTest));

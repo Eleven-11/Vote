@@ -23,7 +23,7 @@ layui.config({
         //初始化菜单信息
         initMenuInfo();
     }
-    init();
+
 //初始化下拉框
     $api.GetFirstPhoto(null,function (res) {
         var data = res.data;
@@ -36,6 +36,7 @@ layui.config({
             form.render();
         }
     });
+    init();
     /**
      * 初始化菜单信息
      * */
@@ -52,7 +53,9 @@ layui.config({
             var data = res.data;
             $("[name='uid']").val(data.uid);
             $("[name='uname']").val(data.uname);
-            $("[name='sex']").val(data.sex);
+            // $("[name='sex1']").val(data.sex);
+            // $("[name='sex1']").attr('checked', 'checked');
+            $("input:radio[value='"+data.sex+"']").attr('checked','true');
             $("[name='departmentId']").val(data.departmentId);
             $("[name='position']").val(data.position);
             $("[name='classOfPosition']").val(data.classOfPosition);
@@ -100,16 +103,16 @@ layui.config({
      * 表单提交
      * */
     form.on("submit(editPhotoUser)", function (data) {
+        // console.log(data)
         var queryArgs = $tool.getQueryParam();//获取查询参数
         var uid = data.field.uid;
         var uname = data.field.uname;
-        var sex = data.field.sex;
+        var sex = data.field.sex1;
         var departmentId = data.field.departmentId;
         var position = data.field.position;
         var classOfPosition = data.field.classOfPosition;
         var gradeOfJudge = data.field.gradeOfJudge;
         var category = data.field.category;
-
         //获取选中的角色列表
         for(var i=0;i<roleIdList.length;i++){
             if(data.field[roleIdList[i]] === 'on'){
@@ -129,7 +132,6 @@ layui.config({
             gradeOfJudge:gradeOfJudge,
             category:category
         };
-
         $api.UpdatePhotoUser(JSON.stringify(req),{contentType:'application/json;charset=utf-8'},function (data) {
             layer.msg("修改成功！",{time:1000},function () {
                 layer.closeAll("iframe");

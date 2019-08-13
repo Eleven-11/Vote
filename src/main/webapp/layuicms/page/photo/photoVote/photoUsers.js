@@ -166,7 +166,7 @@ layui.config({
                             processData: false,// 是否序列化data属性，默认true(注意：false时type必须是post)
                             //dataType: 'json',//这里是返回类型，一般是json,text等
                             //clearForm: true,//提交后是否清空表单数据
-                            success: function (data) {   //提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
+                            success: function () {   //提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
                                 layer.msg("导入成功", {time: 100}, function () {
                                     //重新加载表格
                                     tableIns.reload();

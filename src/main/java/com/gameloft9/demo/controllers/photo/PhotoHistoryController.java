@@ -173,7 +173,7 @@ public class PhotoHistoryController {
      */
     @RequestMapping(value = "/verification.do", method = RequestMethod.POST)
     @ResponseBody
-    @BizOperLog(operType = OperType.ADD, memo = "提交")
+    @BizOperLog(operType = OperType.ADD, memo = "校验")
     public IResult verification(@RequestBody VerificationQueTest verificationQueTest) {
         String content = verificationQueTest.getContent();
         VerificationQueTest ver = photoHistoryServiceImpl.verification(content);

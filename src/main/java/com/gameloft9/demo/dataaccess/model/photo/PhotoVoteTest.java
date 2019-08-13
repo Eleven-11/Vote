@@ -26,3 +26,7 @@ public class PhotoVoteTest implements Serializable{
     private  List<PhotoTitleTest> list;
     private List<String> accounts;
 }
+
+
+
+

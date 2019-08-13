@@ -180,7 +180,7 @@ public class PhotoUserServiceImpl implements PhotoUserService {
 			}*/
         }
         System.out.println("文件导入成功！");
-        return "文件导入成功！";
+        return "success";
     }
 
     public String addUser(PhotoUserTest photoUserTest) {
