@@ -167,13 +167,10 @@ layui.config({
                             //dataType: 'json',//这里是返回类型，一般是json,text等
                             //clearForm: true,//提交后是否清空表单数据
                             success: function (data) {   //提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
-                                console.log(data)
-                                if (data){
-                                    layer.msg("导入成功", {time: 100}, function () {
+                                    layer.msg("导入成功", {time: 1000}, function () {
                                         //重新加载表格
                                         tableIns.reload();
                                     });
-                                }
                             },
                             error: function (data, status, e) {  //提交失败自动执行的处理函数。
                                 console.error(e);

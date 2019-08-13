@@ -106,7 +106,7 @@ public class ExcelUtil {
         }
         switch (cell.getCellType()) {
             //数值型
-            case NUMERIC:
+            case Cell.CELL_TYPE_NUMERIC:
                 if (HSSFDateUtil.isCellDateFormatted(cell)) {
                     //如果是date类型则 ，获取该cell的date值
                     Date date = HSSFDateUtil.getJavaDate(cell.getNumericCellValue());
@@ -125,11 +125,11 @@ public class ExcelUtil {
                 }
                 break;
             //字符串类型
-            case STRING:
+            case Cell.CELL_TYPE_STRING:
                 value = cell.getStringCellValue().toString();
                 break;
             // 公式类型
-            case FORMULA:
+            case Cell.CELL_TYPE_FORMULA:
                 //读公式计算值
                 value = String.valueOf(cell.getNumericCellValue());
                 if (value.equals("NaN")) {// 如果获取的数据值为非法值,则转换为获取字符串
@@ -137,7 +137,7 @@ public class ExcelUtil {
                 }
                 break;
             // 布尔类型
-            case BOOLEAN:
+            case Cell.CELL_TYPE_BOOLEAN:
                 value = " "+ cell.getBooleanCellValue();
                 break;
             default:
