@@ -109,7 +109,7 @@ public class PhotoUserController {
      * */
     @ResponseBody
     @RequestMapping(value="/fileUpload.do")
-    public String UploadExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return photoUserServiceImpl.ajaxUploadExcel(request, response);
+    public IResult UploadExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return new ResultBean<String>(photoUserServiceImpl.ajaxUploadExcel(request, response));
     }
 }
