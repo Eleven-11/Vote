@@ -36,7 +36,7 @@ layui.config({
         var req = {
             id:id
         };
-
+        //findById
         $api.GetMenu(req,function (res) {
             var data = res.data;
             $("[name='menuName']").val(data.title);
@@ -95,7 +95,7 @@ layui.config({
         //获取选中的角色列表
         for(var i=0;i<roleIdList.length;i++){
             if(data.field[roleIdList[i]] === 'on'){
-               idList.push(roleIdList[i]);
+                idList.push(roleIdList[i]);
             }
         }
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.system.GradeTotalMapper">
+    <insert id="addTemplet" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeTemplet" >
+        insert into tp_grade_templet (title,explains,peonum)
+        values (#{title},#{explains},#{peonum})
+        <selectKey resultType="int" keyProperty="templetId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="addEvaluat" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeEvaluat">
+        insert into tp_grade_evaluat
+        (uid,templet_Id)
+        values (#{uid},#{templetId})
+    </insert>
+    <insert id="addRubric" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeRubric">
+        insert into tp_grade_rubric (resId,fraction,templet_Id)
+        values (#{resId},#{fraction},#{templetId})
+        <selectKey resultType="int" keyProperty="rubricId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="addAnswer" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeAnswer">
+        insert into tp_grade_answer (resId,rubric_Id,price)
+        values (#{resId},#{rubricId},#{price})
+    </insert>
+    <insert id="addVerification" parameterType="com.gameloft9.demo.dataaccess.model.system.Verification">
+        insert into tp_democratic_verification (id,content,recordId,isVote)
+        values (#{id},#{content},#{recordId},#{isVote})
+    </insert>
+</mapper>
+

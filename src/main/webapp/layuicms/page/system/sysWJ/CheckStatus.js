@@ -124,11 +124,20 @@ layui.config({
 
         $api.CCC(JSON.stringify(req),{contentType:"application/json;charset=UTF-8"},function (data) {
             //top.layer.close(index);(关闭遮罩已经放在了ajaxExtention里面了)
-            layer.msg("提交成功！", {time: 1000}, function () {
-                layer.closeAll("iframe");
-                //刷新父页面
-                parent.location.reload();
-            });
+            if(optionIds==false){
+                layer.msg("请先选择答案！", {time: 1000}, function () {
+                    // layer.closeAll("iframe");
+                    //刷新父页面
+                    // parent.location.reload();
+                });
+            }else{
+                layer.msg("提交成功！", {time: 1000}, function () {
+                    layer.closeAll("iframe");
+                    //刷新父页面
+                    parent.location.reload();
+                });
+            }
+
         });
 
         return false;

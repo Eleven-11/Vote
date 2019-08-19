@@ -147,5 +147,10 @@ public class TpQuestionnaireStatusServiceImpl implements TpQuestionnaireStatusSe
         return tpQuestionnaireStatusMapper.Count(optionId);
     }
 
+    @Override
+    public List<String> CheckAccount(int statusId) {
+        return tpQuestionnaireStatusMapper.CheckAccount(statusId);
+    }
+
 
 }

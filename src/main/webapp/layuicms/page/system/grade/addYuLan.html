@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../lib/layui/css/layui.css" media="all"/>
+    <script type="text/javascript" src="../../../lib/layui/layui.js"></script>
+    <script type="text/javascript" src="../../../common/js/config.js"></script>
+    <title>投票</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 1152px;
+            height: 1024px;
+            background-color: rgba(242,246,249,1);
+            margin: 0 auto;
+        }
+        .top{
+            width: 180px;
+            height: 180px;
+            margin-bottom: 20px;
+            margin: 0 auto;
+        }
+        .top2{
+            width: 252px;
+            height: 54px;
+            color: #101010;
+            font: 36px "Source Code Pro";
+            margin: 0 auto;
+        }
+        .top3{
+            width: 820px;
+            height: 60px;
+            margin: 0 auto;
+        }
+        .top4{
+            width: 820px;
+            height: 60px;
+            margin: 0 auto;
+        }
+        .bottom{
+            left: 217px;
+            top: 398px;
+            width: 1000px;
+            height: 562px;
+            line-height: 20px;
+            color: rgba(255, 255, 255, 1);
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0px 0px 5px 0px rgba(170, 170, 170, 1);
+            font-family: Roboto;
+            border: 1px solid rgba(187, 187, 187, 1);
+            margin: 0 auto;
+        }
+        .bottom_top{
+            width: 1000px;
+            height: 110px;
+        }
+        .bottom_center{
+            width: 1000px;
+            height: 110px;
+        }
+        .statu{
+            width: 20%;
+            height: 100px;
+            float: left;
+            color: #101010;
+            font: 18px Roboto,BlinkMacSystemFont;
+            text-align: center;
+            border-style: solid;
+            border-width: 0px;
+            line-height: 26px;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+        }
+        .status{
+            width: 19%;
+            height: 100px;
+            float: left;
+            color: #101010;
+            font: 18px Roboto,BlinkMacSystemFont;
+            text-align: center;
+            border-style: solid;
+            border-width: 0px;
+            line-height: 26px;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+        }
+        .ren{
+            width: 20%;
+            height: 100px;
+            float: left;
+            color: #101010;
+            font: 18px Roboto,BlinkMacSystemFont;
+            text-align: center;
+            border-style: solid;
+            border-width: 0px;
+            line-height: 26px;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+        }
+        .mm{
+            width: 80%;
+            height: 100px;
+            float: left;
+            color: #101010;
+            font: 18px Roboto,BlinkMacSystemFont;
+            text-align: center;
+            border-style: solid;
+            border-width: 0px;
+            line-height: 26px;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+        }
+        .nn{
+            width: 80%;
+            height: 100px;
+            float: left;
+            color: #101010;
+            font: 18px Roboto,BlinkMacSystemFont;
+            text-align: center;
+            border-style: solid;
+            border-width: 0px;
+            line-height: 26px;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+        }
+        .bottom_xia{
+            width: 100px;
+        }
+        .fs{
+            width: 19%;
+            height: 100px;
+            float: left;
+            color: #101010;
+            font: 18px Roboto,BlinkMacSystemFont;
+            text-align: center;
+            border-style: solid;
+            border-width: 0px;
+            line-height: 26px;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+        }
+        .text{
+            width: 150px;
+            height: 100px;
+            float: left;
+            color: #101010;
+            font: 18px Roboto,BlinkMacSystemFont;
+            text-align: center;
+            border-style: solid;
+            border-width: 0px;
+            line-height: 26px;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+        }
+        .test{
+            margin: 0 auto;
+            width: 100%;
+        }
+        .radio{
+            width: 18px;
+            height: 18px;
+            left: 0px;
+            top: 4px;
+            z-index: 5;
+            font-weight: normal;
+            font-style: normal;
+            display: inline-block;
+        }
+        .group2{
+            display: inline-block;
+            font-size: 16px;
+        }
+        .submit{
+            width: 280px;
+            height: 50px;
+            left: 580px;
+            top: 881px;
+            font-size: 20px;
+            z-index: 109;
+            background-color: rgb(43, 117, 242);
+            border-radius: 4px;
+            padding: 0px;
+            border-width: 0px;
+            border-style: solid;
+            text-align: center;
+            font-weight: normal;
+            font-style: normal;
+            opacity: 1;
+            margin-top: 30px;
+        }
+        .dq{
+            width:100%;
+        }
+        .btn{
+            position: relative;
+            left: 360px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top">
+        <img src="../../../page/system/photo/放大镜调查报告.gif" style="width: 169px;height: 172px">
+    </div>
+    <div class="top2">
+        <input name="title" type="text" style="border: none;text-align: center;background-color:#eaf9ef;width: 100%" readonly="true">
+    </div>
+    <div class="top3">
+        <input name="explains" type="text" style="border: none;text-align: center;background-color: #eaf9ef;width: 100%" readonly="true">
+    </div>
+    <div class="top4">
+        <input name="peonum" type="text" style="border: none;text-align: center;background-color: #eaf9ef;width: 100%" readonly="true">
+    </div>
+    <div class="bottom">
+<!--    <div class="bottom_top">-->
+<!--        <hr style="height:5px;width:960px;border:5px solid rgba(242,246,249,1);border-top:1px solid #101010;margin: 0 auto" />-->
+<!--            <div class="statu">-->
+<!--            <div class="test"><p><br></p></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="mm">-->
+<!--        <div class="status">-->
+<!--            <div class="test"><input type="text" id="fraction" style="border: none;text-align: center;background-color: #eaf9ef;width: 100px" readonly="true"></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="status">-->
+<!--            <div class="test"><input type="text" id="fraction1" style="border: none;text-align: center;background-color: #eaf9ef;width: 100px" readonly="true"></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="status">-->
+<!--            <div class="test"><input type="text" id="fraction2" style="border: none;text-align: center;background-color: #eaf9ef;width: 100px" readonly="true"></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="status">-->
+<!--            <div class="test"><input type="text" id="fraction3" style="border: none;text-align: center;background-color: #eaf9ef;width: 100px" readonly="true"></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="status">-->
+<!--            <div class="test"><input type="text" id="fraction4" style="border: none;text-align: center;background-color: #eaf9ef;width: 100px" readonly="true"></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="bottom_center">-->
+<!--        <hr style="height:1px;width:960px;border:none;border-top:1px solid #555555;margin: 0 auto" />-->
+<!--        <div class="ren">-->
+<!--            <div class="test2"><input type="text" id="uname" style="border: none;text-align: center;background-color: #eaf9ef;width: 100px"  hidden="hidden"></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="nn">-->
+<!--        <div class="fs">-->
+<!--           <div class="dq">-->
+<!--               <div class="radio">-->
+<!--                   <label class="Android-Radio">-->
+<!--                       <input type="radio" name="price" id="gao">-->
+<!--                       <span class="CheckState"></span>-->
+<!--                   </label>-->
+<!--                   <div class="region gesture" style="display:none;"></div>-->
+<!--               </div>-->
+<!--               <div class="group2">-->
+<!--                   <div class="text3">-->
+<!--                       <p>高&emsp;</p>-->
+<!--                   </div>-->
+<!--               </div>-->
+<!--               <div class="radio">-->
+<!--                   <lable class="Android-Radio">-->
+<!--                       <input type="radio" name="price" id="jiaogao">-->
+<!--                   </lable>-->
+<!--                   <span class="CheckState"></span>-->
+<!--                   <div class="region gesture" style="display:none;"></div>-->
+<!--               </div>-->
+<!--               <div class="group2">-->
+<!--                   <div class="text3">-->
+<!--                       <p>较高</p>-->
+<!--                   </div>-->
+<!--               </div>-->
+<!--           </div>-->
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="yiban">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="jiaocha">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--        </div>-->
+<!--        <div class="fs">-->
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="ngao">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="njiaogao">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="nyiban">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="njiaocha">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--        <div class="fs">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="qgao">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="qjiaogao">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="qyiban">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="qjiaocha">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="fs">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="jgao">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="jjiaogao">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="jyiban">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="jjiaocha">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="fs">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="lgao">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="ljiaogao">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="lyiban">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price" id="ljiaocha">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--        <hr style="height:1px;width:960px;border:none;border-top:1px solid #555555;margin: 0 auto" />-->
+<!--        <div class="text">-->
+<!--            <div class="test2"><input type="text" id="uname1" style="border: none;text-align: center;background-color: #eaf9ef;width: 100px" readonly="true"></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <hr style="height:1px;width:960px;border:none;border-top:1px solid #555555;margin: 0 auto" />-->
+<!--        <div class="text">-->
+<!--            <div class="test2"><p>石磊3号</p></div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text">-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <label class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                        <span class="CheckState"></span>-->
+<!--                    </label>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>高&emsp;</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较高</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="dq">-->
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>一般</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="radio">-->
+<!--                    <lable class="Android-Radio">-->
+<!--                        <input type="radio" name="price">-->
+<!--                    </lable>-->
+<!--                    <span class="CheckState"></span>-->
+<!--                    <div class="region gesture" style="display:none;"></div>-->
+<!--                </div>-->
+<!--                <div class="group2">-->
+<!--                    <div class="text3">-->
+<!--                        <p>较差</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--   </div>-->
+<!--    </div>-->
+</div>
+</div>
+<!--    <div class="bottom_xia">-->
+<!--    <hr style="height:1px;width:960px;border:none;border-top:1px solid #555555;margin: 0 auto" />-->
+<!--    <div class="text">-->
+<!--        <div class="btn">-->
+<!--            <div class="submit_1">-->
+<!--                <a class="layui-btn layui-btn-normal add_btn submit" >提交</a>-->
+<!--            </div>-->
+<!--            <div class="region gesture" style="display:none;"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    </div>-->
+
+<script type="text/javascript" src="../../../lib/layui/layui.js"></script>
+<script type="text/javascript" src="../../../common/js/config.js"></script>
+<script type="text/javascript" src="addYuLan.js"></script>
+</body>
+</html>

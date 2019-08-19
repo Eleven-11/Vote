@@ -25,6 +25,8 @@ layui.config({
         $api.Count(req,function (res) {
             var data = res.data;
             $("[name='title']").val(data.title);
+            $("[name='numberVote']").val(data.numberVote);
+
             var a = 1;
             for(var i=0;i<res.data.questionList.length;i++){
                 var rule = '';

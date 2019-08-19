@@ -82,7 +82,7 @@ public class TpRecordController {
         //添加页面过来的数组
         List<String> coll= big.getColl();
         for (String coll1 : coll) {
-            TpVerification ver = new TpVerification(coll1,record.getRecordId(),"未投票",74);
+            TpVerification ver = new TpVerification(coll1,record.getRecordId(),"1",46);
             tpVerificationServiceImpl.addVerification(ver);
         }
         return new ResultBean<String>("success");

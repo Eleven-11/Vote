@@ -76,7 +76,7 @@ public class SysMenuController {
      * */
     @RequestMapping(value = "/add.do",method = RequestMethod.POST)
     @ResponseBody
-    @BizOperLog(operType = OperType.ADD,memo = "添加菜单")
+    @BizOperLog(operType = OperType.ADD,memo = "添加学生")
     public IResult addMenu(String menuName,String menuUrl,String menuType,String parentMenuId,String requestUrl,String sort){
         //返回json至前端的均返回ResultBean或者PageResultBean
         return new ResultBean<String>(sysMenuServiceImpl.addMenu(menuName,menuUrl,menuType,parentMenuId,requestUrl,sort));

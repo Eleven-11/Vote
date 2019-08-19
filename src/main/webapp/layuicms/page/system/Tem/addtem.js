@@ -153,7 +153,7 @@ layui.config({
         var index = layui.layer.open({
             title: "预览",
             type: 2,
-            content: "mzbcyl.html",
+            content: "TPpreview.html",
             success: function (layero, index) {
                 setTimeout(function () {
                     layui.layer.tips('点击此处返回', '.layui-layer-setwin .layui-layer-close', {

@@ -59,13 +59,15 @@ layui.config({
             //区分事件
             if (layEvent === 'del') { //删除
                 delUser(row.statusId);
-            } else if (layEvent === 'count') { //编辑
+            } else if (layEvent === 'count') { //统计
                 //do something
                 editUser(row.statusId);
             }else if(layEvent === 'cancel'){//关闭投票
                 cancel(row.statusId);
             }else if(layEvent === 'yul'){//查看
                 yul(row.statusId);
+            }else if(layEvent === 'Check'){//查看
+                Check(row.statusId);
             }
         });
     }
@@ -216,4 +218,24 @@ layui.config({
 
     }
 
+    function Check(statusId){
+        var index = layui.layer.open({
+            title: "编辑用户",
+            type: 2,
+            content: "CheckAccount.html?statusId="+statusId,
+            success: function (layero, index) {
+                setTimeout(function () {
+                    layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
+                        tips: 3
+                    });
+                }, 500)
+            }
+        });
+
+        //改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+        $(window).resize(function () {
+            layui.layer.full(index);
+        });
+        layui.layer.full(index);
+    }
 });

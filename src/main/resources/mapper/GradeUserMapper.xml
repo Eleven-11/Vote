@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gameloft9.demo.dataaccess.dao.system.GradeUserMapper">
+    <resultMap id="UserResultMap" type="com.gameloft9.demo.dataaccess.model.system.GradeUser">
+        <id column="username" property="username" jdbcType="VARCHAR"></id>
+        <result column="uid" property="uid" jdbcType="INTEGER"></result>
+        <result column="tel" property="tel" jdbcType="VARCHAR"></result>
+        <result column="password" property="uid" jdbcType="VARCHAR"></result>
+        <result column="uname" property="uname" jdbcType="INTEGER"></result>
+        <result column="role" property="role" jdbcType="INTEGER"></result>
+    </resultMap>
+<select id="findAll" resultMap="UserResultMap">
+    select
+        gu.username username,
+        pu.uname uname,
+        gu.tel tel,
+        pu.position role
+    from
+        tp_grade_user AS gu,
+        tp_photo_user AS pu
+    where
+        gu.uid=pu.uid
+        limit #{start,jdbcType=DECIMAL},#{end,jdbcType=DECIMAL}
+</select>
+    <select id="countGetAll" parameterType="map" resultType="Integer">
+        select
+            count(0)
+        from
+            tp_grade_user
+    </select>
+    <delete id="delete" parameterType="String">
+        delete from tp_grade_user
+        where
+        username=#{username,jdbcType=VARCHAR}
+    </delete>
+</mapper>

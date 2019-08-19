@@ -1,9 +1,11 @@
 package com.gameloft9.demo.mgrframework.beans.response;
 
+import com.gameloft9.demo.dataaccess.model.system.GradeRecord;
 import com.gameloft9.demo.mgrframework.beans.error.IErrCode;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 普通返回统一封装
@@ -58,7 +60,8 @@ public class ResultBean<T> extends AbstractResult implements Serializable{
 		this.code = code;
 	}
 
-	@Override
+
+    @Override
 	public String toString(){
 		return "[code="+code+",data="+data+"]";
 	}

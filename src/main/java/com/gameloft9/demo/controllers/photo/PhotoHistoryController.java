@@ -140,7 +140,7 @@ public class PhotoHistoryController {
         for (String content : accounts) {
             //1  未投票    0已投票
             String isVote = "1";
-            String id = "47";
+            String id = "48";
             VerificationQueTest verificationQueTest = new VerificationQueTest(id, content, photoHistoryTest.getHid(), isVote);
             photoHistoryServiceImpl.addverificationQue(verificationQueTest);
         }

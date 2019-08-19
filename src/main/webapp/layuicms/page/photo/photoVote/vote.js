@@ -178,7 +178,7 @@ layui.config({
          }
             var aa =   JSON.stringify(req);
             window.sessionStorage.setItem("aa", aa);
-            $api.Verification(JSON.stringify(req),{contentType:"application/json;charset=UTF-8"},function (data) {
+            $api.VerificationHao(JSON.stringify(req),{contentType:"application/json;charset=UTF-8"},function (data) {
                 if (data.data == false) {
                     layer.msg("账号不存在或已投过票", {time: 1000}, function () {
                         //obj.del(); //删除对应行（tr）的DOM结构

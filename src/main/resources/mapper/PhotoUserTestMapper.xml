@@ -67,10 +67,13 @@
     </insert>
 
     <insert id="insert" parameterType="com.gameloft9.demo.dataaccess.model.photo.PhotoUserTest">
-        INSERT INTO tp_photo_user(uname,sex,departmentId,classOfPosition,position,gradeOfJudge,category)
-        VALUES (#{uname,jdbcType=VARCHAR},#{sex,jdbcType=INTEGER},#{departmentId,jdbcType=INTEGER},#{classOfPosition,jdbcType=INTEGER},
-        #{position,jdbcType=INTEGER},#{gradeOfJudge,jdbcType=INTEGER},#{category,jdbcType=INTEGER})
+        <if test="uname != null and sex != null and departmentId != null and classOfPosition != null and position != null and gradeOfJudge != null and category != null">
+            INSERT INTO tp_photo_user(uname,sex,departmentId,classOfPosition,position,gradeOfJudge,category)
+            VALUES (#{uname,jdbcType=VARCHAR},#{sex,jdbcType=INTEGER},#{departmentId,jdbcType=INTEGER},#{classOfPosition,jdbcType=INTEGER},
+            #{position,jdbcType=INTEGER},#{gradeOfJudge,jdbcType=INTEGER},#{category,jdbcType=INTEGER})
+        </if>
     </insert>
+
 
     <delete id="deleteUser" parameterType="java.lang.Integer">
         DELETE  FROM  tp_photo_user WHERE uid=#{0}

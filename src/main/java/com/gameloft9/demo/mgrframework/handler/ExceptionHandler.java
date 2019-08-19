@@ -45,7 +45,7 @@ public class ExceptionHandler {
     public IResult handleException(DataAccessException e, HttpServletRequest request,HttpServletResponse response){
         log.error("DataAccessException:{"+ResultBean.SYSTEM_FAIL+","+e.getMessage()+"}",e);
         ResultBean<?> result = new ResultBean();
-        result.setMsg("数据库访问异常");
+        result.setMsg("失败");
         result.setCode(ResultBean.SYSTEM_FAIL);
         return result;
     }

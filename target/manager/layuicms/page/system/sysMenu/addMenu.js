@@ -46,6 +46,7 @@ layui.config({
         var value = data.value;
         if ('2' === value) {//二级菜单
             $('.parent-menu').removeClass('layui-hide');
+
             $('.parent-menu').addClass('layui-anim-up');
         }else{
             $('.parent-menu').addClass('layui-hide');
@@ -73,7 +74,9 @@ layui.config({
             requestUrl:requestUrl,
             sort:sort
         };
-
+        //2.這個是封装好的ajax请求
+        //$api.AddMenu == $.post(url,data,function(data){});  ==$.ajax({});
+        //这些请求都是封装在layuicms/commom/js/api.js
         $api.AddMenu(req,function (data) {
             //top.layer.close(index);(关闭遮罩已经放在了ajaxExtention里面了)
             layer.msg("菜单添加成功！", {time: 1000}, function () {

@@ -22,6 +22,4 @@ public class SysAccessPermissionServiceImpl implements SysAccessPermissionServic
     public List<SysAccessPermissionTest> getAll(){
         return sysAccessPermissionTestDao.selectAll();
     }
-
-
 }

@@ -57,7 +57,7 @@ public class tpQuestionnaireStatusController {
                 option.setQuestionId(question.getQuestionId());
                 tpQuestionnaireStatusService.add2(option);
             }
-        
+
         }
         Date date = new Date();
         TpQuestionnaireStatus tpQuestionnaireStatus = new TpQuestionnaireStatus(String.valueOf(title.getTitleId()),date,"35");
@@ -120,13 +120,17 @@ public IResult add1(@RequestBody TpquestionnaireTitle title){
         String statusId = statistics.getStatusId();
         for (String option : optionIds) {
 //            int optionId = option.getOptionId();
-            TpQuestionnaireStatistics t = new TpQuestionnaireStatistics(String.valueOf(option),statusId);
-            tpQuestionnaireStatusService.addT(t);
+            if(option==null){
+                return new ResultBean<String>("false");
+            }else{
+                TpQuestionnaireStatistics t = new TpQuestionnaireStatistics(String.valueOf(option),statusId);
+                tpQuestionnaireStatusService.addT(t);
+                tpQuestionnaireStatusService.deleteVote(statistics.getContent());
+            }
+
         }
         //1是为投票   0是已投票
-
 //        tpQuestionnaireStatusService.updateVote(statistics.getContent());
-        tpQuestionnaireStatusService.deleteVote(statistics.getContent());
         return new ResultBean<String>("success");
     }
 
@@ -205,4 +209,13 @@ public IResult add1(@RequestBody TpquestionnaireTitle title){
         return new ResultBean<TpquestionnaireTitle>(tpquestionnaireTitle);
     }
 
+
+
+    //查看账号
+    @RequestMapping(value = "/CheckAccount.do",method = RequestMethod.POST)
+    @ResponseBody
+    public IResult CheckAccount(Integer statusId){
+        List<String> strings = tpQuestionnaireStatusService.CheckAccount(statusId);
+        return new ResultBean<List<String>>(strings);
+    }
 }

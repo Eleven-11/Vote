@@ -43,10 +43,10 @@ layui.config({
         tableIns = table.render({
             elem: '#menu-data'
             , height: 415
-            , url: $tool.getContext() + 'menu/menuList.do' //数据接口
+            , url: $tool.getContext() + 'menu/menuList.do' //数据接口(请求地址)
             , method: 'post'
             , page:true //开启分页
-            , cols: [[ //表头
+            , cols: [[ //表头 field  返回的实体对象里面属性的数据一致
                   {type:'numbers',title:'序号',fixed: 'left'},
                   {field: 'title', title: '菜单名称', width: '10%'}
                 , {field: 'code', title: '菜单编号', width: '10%'}

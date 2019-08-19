@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+    <mapper namespace="com.gameloft9.demo.dataaccess.dao.system.GradeAdmMapper">
+    <resultMap id="AdmResultMap" type="com.gameloft9.demo.dataaccess.model.system.GradeAdm">
+        <id column="adm_Id" property="admId" jdbcType="INTEGER"></id>
+        <result column="templet_Id" property="templetId" jdbcType="INTEGER"></result>
+        <result column="a_time" property="aTime" jdbcType="TIMESTAMP"></result>
+        <result column="templet_title" property="templetTitle" jdbcType="VARCHAR"></result>
+        <result column="resId" property="resId" jdbcType="INTEGER"></result>
+    </resultMap>
+    <select id="findAll" resultMap="AdmResultMap">
+       SELECT
+            ad.adm_Id admId,
+            ad.templet_Id templetId,
+	        ad.templet_title,
+            ad.a_time aTime,
+            ad.resId resId
+       FROM
+	        tp_grade_adm AS ad
+	        order by resId asc ,a_time desc
+    </select>
+    <select id="countGetAll" parameterType="map" resultType="Integer">
+        select count(0) from tp_grade_adm
+    </select>
+    <delete id="delete" parameterType="Integer">
+        DELETE
+        tp_grade_rubric,
+        tp_grade_answer ,
+        tp_grade_templet ,
+        tp_grade_evaluat,
+        tp_grade_adm
+        FROM
+        tp_grade_rubric
+        LEFT JOIN
+        tp_grade_answer
+        ON
+        tp_grade_rubric.rubric_Id=tp_grade_answer.rubric_Id
+        LEFT JOIN
+        tp_grade_templet
+        ON
+        tp_grade_templet.templet_Id=tp_grade_rubric.templet_Id
+        LEFT JOIN
+        tp_grade_evaluat
+        ON
+        tp_grade_evaluat.templet_Id=tp_grade_templet.templet_Id
+        LEFT JOIN
+        tp_grade_adm
+        ON
+        tp_grade_adm.templet_Id=tp_grade_templet.templet_Id
+        WHERE
+        tp_grade_adm.adm_Id=#{adm_Id,jdbcType=INTEGER}
+    </delete>
+    <resultMap id="GradeAdmResult" type="com.gameloft9.demo.dataaccess.model.system.GradeAdm">
+        <!--GradeAdm 表里面要用的字段-->
+        <id column="adm_Id" property="admId" jdbcType="INTEGER"></id>
+        <result column="templet_Id" property="templetId" jdbcType="INTEGER"></result>
+        <association property="templet" javaType="com.gameloft9.demo.dataaccess.model.system.GradeTemplet">
+            <id column="templet_Id" property="templetId" jdbcType="INTEGER"></id>
+            <result column="title" property="title" jdbcType="VARCHAR"></result>
+            <result column="explains" property="explains" jdbcType="VARCHAR"></result>
+            <result column="peonum" property="peonum" jdbcType="VARCHAR"></result>
+            <collection property="evaluatList" ofType="com.gameloft9.demo.dataaccess.model.system.GradeEvaluat">
+                <id column="evaluat_Id" property="evaluatId" jdbcType="INTEGER"></id>
+                <result column="uid" property="uid" jdbcType="INTEGER"></result>
+                <collection property="userList" ofType="com.gameloft9.demo.dataaccess.model.system.PhotoUser">
+                    <id column="uid" property="uid" jdbcType="INTEGER"></id>
+                    <result column="uname" property="uname" jdbcType="VARCHAR"></result>
+                </collection>
+            </collection>
+            <collection property="rubrics" ofType="com.gameloft9.demo.dataaccess.model.system.GradeRubric">
+                <id column="rubric_Id" property="rubricId" jdbcType="INTEGER"></id>
+                <result column="resId" property="resId" jdbcType="INTEGER"></result>
+                <result column="fraction" property="fraction" jdbcType="VARCHAR"></result>
+                <association property="resourceList" javaType="com.gameloft9.demo.dataaccess.model.system.ResourceList">
+                    <id column="id" property="id" jdbcType="INTEGER"></id>
+                    <result column="resName" property="resName" jdbcType="VARCHAR"></result>
+                </association>
+                <collection property="answerList" ofType="com.gameloft9.demo.dataaccess.model.system.GradeAnswer">
+                    <id column="answer_Id" property="answerId" jdbcType="INTEGER"></id>
+                    <result column="resId1" property="resId" jdbcType="INTEGER"></result>
+                    <result column="price" property="price" jdbcType="VARCHAR"></result>
+                </collection>
+            </collection>
+        </association>
+    </resultMap>
+    <select id="findById" parameterType="Integer" resultMap="GradeAdmResult">
+                  select
+                  tp_grade_adm.adm_Id,
+                  tp_grade_templet.title,tp_grade_templet.explains,
+                  tp_grade_templet.peonum,tp_grade_templet.templet_Id,tp_resourcelist.resName,
+
+                tp_grade_rubric.resId,tp_grade_rubric.fraction,tp_grade_rubric.rubric_Id,
+
+                tp_grade_evaluat.uid,tp_grade_evaluat.evaluat_Id,
+
+                tp_grade_answer.resId resId1,tp_grade_answer.price,tp_grade_answer.answer_Id,
+                tp_photo_user.uname
+
+
+                from  tp_grade_adm,tp_grade_templet,tp_grade_rubric,tp_grade_evaluat,tp_grade_answer,tp_photo_user,tp_resourcelist
+
+                where tp_grade_adm.templet_Id=tp_grade_templet.templet_Id
+
+                and  tp_grade_templet.templet_Id = tp_grade_rubric.templet_Id
+
+                and  tp_grade_evaluat.templet_Id=tp_grade_templet.templet_Id
+
+                and tp_grade_answer.rubric_Id=tp_grade_rubric.rubric_Id
+
+                 AND tp_resourcelist.id=tp_grade_rubric.resId
+
+                and tp_photo_user.uid=tp_grade_evaluat.uid
+
+                and tp_grade_adm.adm_Id=#{admId,jdbcType=INTEGER}
+
+    </select>
+    <resultMap id="GradeAdmResult2" type="com.gameloft9.demo.dataaccess.model.system.GradeAdm">
+        <!--GradeAdm 表里面要用的字段-->
+        <id column="adm_Id" property="admId" jdbcType="INTEGER"></id>
+        <result column="templet_Id" property="templetId" jdbcType="INTEGER"></result>
+        <association property="templet" javaType="com.gameloft9.demo.dataaccess.model.system.GradeTemplet">
+            <id column="templet_Id" property="templetId" jdbcType="INTEGER"></id>
+            <result column="title" property="title" jdbcType="VARCHAR"></result>
+            <result column="explains" property="explains" jdbcType="VARCHAR"></result>
+            <result column="peonum" property="peonum" jdbcType="VARCHAR"></result>
+            <collection property="evaluatList" ofType="com.gameloft9.demo.dataaccess.model.system.GradeEvaluat">
+                <id column="evaluat_Id" property="evaluatId" jdbcType="INTEGER"></id>
+                <result column="uid" property="uid" jdbcType="INTEGER"></result>
+                <collection property="userList" ofType="com.gameloft9.demo.dataaccess.model.system.PhotoUser">
+                    <id column="uid" property="uid" jdbcType="INTEGER"></id>
+                    <result column="uname" property="uname" jdbcType="VARCHAR"></result>
+                </collection>
+            </collection>
+            <collection property="rubrics" ofType="com.gameloft9.demo.dataaccess.model.system.GradeRubric">
+                <id column="rubric_Id" property="rubricId" jdbcType="INTEGER"></id>
+                <result column="resId" property="resId" jdbcType="INTEGER"></result>
+                <result column="fraction" property="fraction" jdbcType="VARCHAR"></result>
+                <association property="resourceList" javaType="com.gameloft9.demo.dataaccess.model.system.ResourceList">
+                    <id column="id" property="id" jdbcType="INTEGER"></id>
+                    <result column="resName" property="resName" jdbcType="VARCHAR"></result>
+                </association>
+                <collection property="answerList" ofType="com.gameloft9.demo.dataaccess.model.system.GradeAnswer">
+                    <id column="answer_Id" property="answerId" jdbcType="INTEGER"></id>
+                    <result column="resId1" property="resId" jdbcType="INTEGER"></result>
+                    <result column="price" property="price" jdbcType="VARCHAR"></result>
+                </collection>
+            </collection>
+        </association>
+    </resultMap>
+    <select id="findById2" parameterType="Integer" resultMap="GradeAdmResult2">
+                 select
+                    tp_grade_adm.adm_Id,
+
+                    tp_grade_templet.title,tp_grade_templet.explains,
+
+                    tp_grade_templet.peonum,tp_grade_templet.templet_Id,tp_grade_rubric.resId,
+
+                    tp_resourcelist.resName,tp_grade_rubric.fraction,tp_grade_rubric.rubric_Id,
+
+                    tp_grade_evaluat.uid,tp_grade_evaluat.evaluat_Id,
+
+                    tp_grade_answer.resId resId1,tp_grade_answer.price,tp_grade_answer.answer_Id,
+
+                    tp_photo_user.uname
+
+                    from
+
+                    tp_grade_adm,tp_grade_templet,tp_grade_rubric,tp_grade_evaluat,tp_grade_answer,tp_photo_user,tp_resourcelist
+
+                    where tp_grade_adm.templet_Id=tp_grade_templet.templet_Id
+
+                    and  tp_grade_templet.templet_Id = tp_grade_rubric.templet_Id
+
+                    and  tp_grade_evaluat.templet_Id=tp_grade_templet.templet_Id
+
+                    AND tp_resourcelist.id=tp_grade_rubric.resId
+
+                    and tp_grade_answer.rubric_Id=tp_grade_rubric.rubric_Id
+
+                    and tp_photo_user.uid=tp_grade_evaluat.uid
+
+                    and tp_grade_adm.adm_Id=#{admId,jdbcType=INTEGER}
+
+    </select>
+    <update id="isTop" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeAdm">
+        update tp_grade_adm
+        set resId=53
+        where adm_Id=#{adm_Id,jdbcType=INTEGER}
+    </update>
+    <update id="noTop" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeAdm">
+        update tp_grade_adm
+        set resId=52
+        where adm_Id=#{adm_Id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="addTempletAdm" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeTemplet" >
+        insert into tp_grade_templet (title,explains,peonum)
+        values (#{title},#{explains},#{peonum})
+        <selectKey resultType="int" keyProperty="templetId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="addEvaluatAdm" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeEvaluat">
+        insert into tp_grade_evaluat
+        (uid,templet_Id)
+        values (#{uid},#{templetId})
+    </insert>
+    <insert id="addRubricAdm" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeRubric">
+        insert into tp_grade_rubric (resId,fraction,templet_Id)
+        values (#{resId},#{fraction},#{templetId})
+        <selectKey resultType="int" keyProperty="rubricId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="addAnswerAdm" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeAnswer">
+        insert into tp_grade_answer (resId,rubric_Id,price)
+        values (#{resId},#{rubricId},#{price})
+    </insert>
+    <insert id="insertAdm" parameterType="com.gameloft9.demo.dataaccess.model.system.GradeAdm">
+        insert into tp_grade_adm (templet_Id,a_time,templet_title,resId)
+        values (#{templetId},#{aTime},#{templetTitle},#{resId})
+    </insert>
+</mapper>
+

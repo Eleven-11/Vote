@@ -68,4 +68,8 @@ public interface TpQuestionnaireStatusMapper {
     //统计
     int Count(int optionId);
 
+
+    //查看账号
+    List<String> CheckAccount(int statusId);
+
 }

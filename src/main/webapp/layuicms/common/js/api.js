@@ -133,29 +133,29 @@ layui.define(['$tool','jquery'], function (exports) {
         GetallOrg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'depart/All.do',req,successCallback,errorCallback);
         },
-        GetOrg:function(req,successCallback,errorCallback){
-            doPost($tool.getContext() + 'org/get.do',req,successCallback,errorCallback);
-        },
         Getorg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'depart/get.do',req,successCallback,errorCallback);
-        },
-        AddOrg:function(req,successCallback,errorCallback){
-            doPost($tool.getContext() + 'org/add.do',req,successCallback,errorCallback);
         },
         Addorg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'depart/add.do',req,successCallback,errorCallback);
         },
-        UpdateOrg:function(req,successCallback,errorCallback){
-            doPost($tool.getContext() + 'org/update.do',req,successCallback,errorCallback);
-        },
         Updateorg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'depart/update.do',req,successCallback,errorCallback);
         },
-        DeleteOrg:function(req,successCallback,errorCallback){
-            doPost($tool.getContext() + 'org/delete.do',req,successCallback,errorCallback);
-        },
         Deleteorg:function(req,successCallback,errorCallback){
             doPost($tool.getContext() + 'depart/delete.do',req,successCallback,errorCallback);
+        },
+        GetOrg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'org/get.do',req,successCallback,errorCallback);
+        },
+        AddOrg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'org/add.do',req,successCallback,errorCallback);
+        },
+        UpdateOrg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'org/update.do',req,successCallback,errorCallback);
+        },
+        DeleteOrg:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'org/delete.do',req,successCallback,errorCallback);
         },
         AddRole:function(req,successCallback,errorCallback){
             doPost($tool.getContext()+'role/add.do',req,successCallback,errorCallback);
@@ -254,7 +254,7 @@ layui.define(['$tool','jquery'], function (exports) {
             doPost($tool.getContext() + 'student/delete.do',req,config,successCallback,errorCallback);
         },
         InitPwd:function(req,successCallback,errorCallback){
-            doPost($tool.getContext() + 'Template/update3',req,successCallback,errorCallback);
+            doPost($tool.getContext() + 'sysUser/initPwd.do',req,successCallback,errorCallback);
         },
         GetUser:function(req,successCallback,errorCallback){
             doPost($tool.getContext()+'sysUser/get.do',req,successCallback,errorCallback);
@@ -274,7 +274,9 @@ layui.define(['$tool','jquery'], function (exports) {
         UpdateStatus:function(req,config,successCallback,errorCallback){
             doPost($tool.getContext() + 'WJ/update.do',req,config,successCallback,errorCallback);
         },
-
+        CheckAccount:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'WJ/CheckAccount.do',req,successCallback,errorCallback);
+        },
         Add:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'WJ/add.do',req,config,successCallback,errorCallback);
         },
@@ -313,6 +315,59 @@ layui.define(['$tool','jquery'], function (exports) {
         },
         UpdateTemplate:function(req,config,successCallback,errorCallback){
             doComplexPost($tool.getContext() + 'Template/update3.do',req,config,successCallback,errorCallback);
+        },
+
+
+        DeleteRecord:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'record2/delete.do',req,successCallback,errorCallback);
+        },
+        DeleteGradeUser:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'gradeUser/delete.do',req,successCallback,errorCallback);
+        },
+        DeleteAdm:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'adm/delete.do',req,successCallback,errorCallback);
+        },
+        UpdateResId:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'record2/update.do',req,successCallback,errorCallback);
+        },
+        IsTopResId:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'adm/isTop.do',req,successCallback,errorCallback);
+        },
+        NoTopResId:function(req,successCallback,errorCallback){
+            doPost($tool.getContext() + 'adm/noTop.do',req,successCallback,errorCallback);
+        },
+        GetAdm:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'adm/findById.do',req,successCallback,errorCallback);
+        },
+        GetVer:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'record2/findByIdVer.do',req,successCallback,errorCallback);
+        },
+        GetExcel:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'record2/exportExcel',req,successCallback,errorCallback);
+        },
+        GetAdm2:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'adm/findById2.do',req,successCallback,errorCallback);
+        },
+        GetRecord:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'record2/findByIdRecord.do',req,successCallback,errorCallback);
+        },
+        GetCount:function(req,successCallback,errorCallback){
+            doPost($tool.getContext()+'record2/findByIdCount.do',req,successCallback,errorCallback);
+        },
+        VerificationHao:function(req,successCallback,errorCallback){
+            doComplexPost($tool.getContext() + 'record2/verification.do',req,successCallback,errorCallback);
+        },
+        addTemplet:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext()+'templ/add.do',req,config,successCallback,errorCallback);
+        },
+        updateTemplet:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext()+'templ/add.do',req,config,successCallback,errorCallback);
+        },
+        addAdmKeep:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext()+'adm/add.do',req,config,successCallback,errorCallback);
+        },
+        tiRecord:function(req,config,successCallback,errorCallback){
+            doComplexPost($tool.getContext()+'record2/insertStatistics.do',req,config,successCallback,errorCallback);
         },
     };
 

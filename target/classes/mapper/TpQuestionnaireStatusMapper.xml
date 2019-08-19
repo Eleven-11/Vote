@@ -173,4 +173,12 @@
         from tp_questionnaire_statistics
         where optionId=#{optionId}
     </select>
+
+
+
+<!--    查看账号-->
+    <select id="CheckAccount" parameterType="java.lang.Integer" resultType="com.gameloft9.demo.dataaccess.model.tp.TpDemocraticVerification">
+        select content from tp_democratic_verification
+        where recordId=#{0}
+    </select>
 </mapper>

@@ -41,6 +41,7 @@ layui.config({
             ,choose:function (obj) {
                 //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
                 obj.preview(function(index, file, result){
+                    console.log(result);
                     //图片预览,result是图片base64编码
                     $('#userFace').css('background-image','url('+result+')');
                 });
