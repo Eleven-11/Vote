@@ -21,17 +21,19 @@
         values (#{content}, #{recordId}, #{isVote}, #{id});
     </insert>
 
-    <select id="findzh" parameterType="java.lang.Integer" resultType="String">
+    <select id="findzh" parameterType="java.lang.Integer" resultType="com.gameloft9.demo.dataaccess.model.system.TpDemVerification">
         select
-        content
+        content,isVote
         from tp_democratic_verification
         where
         recordId = #{recordId}
     </select>
 
-    <delete id="delzh" parameterType="java.lang.String">
-        delete from tp_democratic_verification
+    <update id="delzh" parameterType="java.lang.String">
+        update tp_democratic_verification
+        set
+        isVote = 0
         where content = #{content}
-    </delete>
+    </update>
 
 </mapper>

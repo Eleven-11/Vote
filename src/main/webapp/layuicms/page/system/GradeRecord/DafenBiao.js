@@ -227,7 +227,6 @@ layui.config({
             }
 
             $api.DelZH(req2, function (res) {
-
                 layer.msg("成功！", {time: 1000}, function () {
                     layer.closeAll("iframe");
                     //刷新父页面

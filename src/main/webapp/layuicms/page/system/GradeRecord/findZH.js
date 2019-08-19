@@ -13,7 +13,7 @@ layui.config({
         $api = layui.$api;
 
     var record_Id;
-    var zhanghao;
+    var zhanghao = new Array();
     /**
      * 页面初始化
      * */
@@ -39,19 +39,35 @@ layui.config({
 
             $api.GetZH(req,function (res) {
                 var data = res.data;
-                // console.log(data);
-                zhanghao = res.data;
-                if (data.length > 0) {
+                for (var a=0;a<data.length;a++){
+                    zhanghao.push(data[a].content);
+                }
+                // console.log(zhanghao)
+                if (zhanghao.length > 0) {
                     var html = '';
-                    for (var i = 0; i < data.length; i++) {
-                        html += '<i>'+ data[i] +'</i><i>&emsp;&emsp;</i>';
-                        if (data[i+1] != null){
-                            html += '<i>'+ data[i+1] +'</i><i>&emsp;&emsp;</i> ';
-                            i++;
+                    for (var i = 0; i < zhanghao.length; i++) {
+                        if (data[i].isVote == 0) {
+                            html += '<i style="color: #ff0000;">'+ zhanghao[i] +'</i><i>&emsp;&emsp;</i>';
+                        } else {
+                            html += '<i>'+ zhanghao[i] +'</i><i>&emsp;&emsp;</i>';
                         }
-                        if (data[i+2] != null){
-                            html += '<i>'+ data[i+2] +'</i><i>&emsp;&emsp;</i> ';
-                            i++;
+                        if (zhanghao[i+1] != null){
+                            if (data[i+1].isVote == 0) {
+                                html += '<i style="color: #ff0000;">'+ zhanghao[i+1] +'</i><i>&emsp;&emsp;</i> ';
+                                i++;
+                            } else {
+                                html += '<i>'+ zhanghao[i+1] +'</i><i>&emsp;&emsp;</i> ';
+                                i++;
+                            }
+                        }
+                        if (zhanghao[i+1] != null) {
+                            if (data[i+1].isVote == 0) {
+                                html += '<i style="color: #ff0000;">'+ zhanghao[i+1] +'</i><i>&emsp;&emsp;</i> ';
+                                i++;
+                            } else {
+                                html += '<i>'+ zhanghao[i+1] +'</i><i>&emsp;&emsp;</i> ';
+                                i++;
+                            }
                         }
                     }
                     $('#findzh').append($(html));

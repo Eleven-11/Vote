@@ -142,8 +142,8 @@ public class TpGradeTempletServiceImpl implements TpGradeTempletService {
         return tpGradeTempletMapper.findByTid(templet_Id);
     }
 
-    public List<String> findzh() {
-        List<String> findzh = new ArrayList<String>();
+    public List<TpDemVerification> findzh() {
+        List<TpDemVerification> findzh = new ArrayList<TpDemVerification>();
 
         if (tpGraderecord.getRecord_Id()!=0){
             findzh = tpDemVerificationMapper.findzh(tpGraderecord.getRecord_Id());
@@ -152,9 +152,9 @@ public class TpGradeTempletServiceImpl implements TpGradeTempletService {
         return findzh;
     }
 
-    public List<String> getzh(Integer record_Id) {
+    public List<TpDemVerification> getzh(Integer record_Id) {
 
-        List<String> findzh = tpDemVerificationMapper.findzh(record_Id);
+        List<TpDemVerification> findzh = tpDemVerificationMapper.findzh(record_Id);
         return findzh;
     }
 

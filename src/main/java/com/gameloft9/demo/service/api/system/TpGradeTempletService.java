@@ -28,9 +28,9 @@ public interface TpGradeTempletService {
 
     TpGradeTemplet findByTid(Integer templet_Id);
 
-    List<String> findzh();
+    List<TpDemVerification> findzh();
 
-    List<String> getzh(Integer record_Id);
+    List<TpDemVerification> getzh(Integer record_Id);
 
     boolean bcmuban(TpGradeMuBan tpGradeMuBan);
 

@@ -1,5 +1,6 @@
 package com.gameloft9.demo.controllers.system;
 
+import com.gameloft9.demo.dataaccess.model.system.TpDemVerification;
 import com.gameloft9.demo.dataaccess.model.system.TpGradeStatistics;
 import com.gameloft9.demo.mgrframework.annotation.BizOperLog;
 import com.gameloft9.demo.mgrframework.beans.constant.OperType;
@@ -83,8 +84,8 @@ public class TpGradeTempletController {
     @ResponseBody
     public IResult findzh(){
 
-        List<String> list = tpGradeTempletService.findzh();
-        return new ResultBean<List<String>>(list);
+        List<TpDemVerification> list = tpGradeTempletService.findzh();
+        return new ResultBean<List<TpDemVerification>>(list);
 
     }
 
@@ -92,7 +93,7 @@ public class TpGradeTempletController {
     @ResponseBody
     @BizOperLog(operType = OperType.UPDATE,memo = "保存模板", memos = "7")
     public IResult bcmuban(TpGradeMuBan tpGradeMuBan){
-        
+
         tpGradeTempletService.bcmuban(tpGradeMuBan);
         tpGradeTempletService.add(tpGradeMuBan.getTitle(), tpGradeMuBan.getExplains(), tpGradeMuBan.getPeonum());
         tpGradeTempletService.addmuban(tpGradeMuBan.getTemplet_title());
@@ -129,8 +130,8 @@ public class TpGradeTempletController {
     @BizOperLog(operType = OperType.Query,memo = "查看投票账号", memos = "16")
     public IResult getzh(Integer record_Id){
 
-        List<String> list = tpGradeTempletService.getzh(record_Id);
-        return new ResultBean<List<String>>(list);
+        List<TpDemVerification> list = tpGradeTempletService.getzh(record_Id);
+        return new ResultBean<List<TpDemVerification>>(list);
 
     }
 

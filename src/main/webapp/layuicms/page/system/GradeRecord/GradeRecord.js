@@ -14,7 +14,8 @@ layui.config({
         $api = layui.$api;
 
     var uid = new Array();
-    var zhanghao;
+    var zhanghao = new Array();
+    var isTP = new Array();
     var tpzh;
     var tableIns;//表格实例
     /**
@@ -106,12 +107,6 @@ layui.config({
                     });
                 }, 500)
             },
-            // end:function () {
-            //     var qq ={
-            //         uid:uid.toString(),
-            //     }
-            //     $api.Addrenyuan(qq,function (data) {});
-            // }
         });
 
         //改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
@@ -165,7 +160,7 @@ layui.config({
         layui.layer.open({
             type: 2,
             title: '统计',
-            area : ['500px' , '500px'],
+            area : ['600px' , '500px'],
             content: '../../../page/system/GradeRecord/TongJi.html?record_Id='+record_Id,
             end:function () {
 
@@ -182,35 +177,46 @@ layui.config({
             }
             $api.GetZH(req, function (res) {
                 var data = res.data;
-                zhanghao = res.data;
+                for (var a=0; a<data.length; a++){
+                    zhanghao.push(data[a].content);
+                    isTP.push(data[a].isVote);
+                }
+                // console.log(zhanghao)
                 if (resId == "发布中") {
                     layer.prompt({title: '请输入投票账号',}, function (val, index2) {
                         if ($.inArray(val, zhanghao) == -1) {
-                            layer.msg("投票账号不存在,或不能进行此项投票", {time: 1000}, function () {
-                                layer.closeAll("iframe");
-                                //刷新父页面
-                                parent.location.reload();
-                            });
+                            layer.msg("该投票账号不存在,或不能进行此项投票", {time: 1000}, function () {});
                         } else {
-                            layer.close(index2);
-                            tpzh = val;
-                            var index = layui.layer.open({
-                                title: "查看投票",
-                                type: 2,
-                                content: "../../../page/system/GradeRecord/DaFenBiaoFB.html?record_Id=" + record_Id + "&tpzh=" + tpzh,
-                                success: function (layero, index) {
-                                    setTimeout(function () {
-                                        layui.layer.tips('点击此处返回评测打分记录', '.layui-layer-setwin .layui-layer-close', {
-                                            tips: 3
+                            var srzh = zhanghao.length;
+                            while (srzh--) {
+                                if (zhanghao[srzh] === val) {
+                                    if (isTP[srzh] == 0) {
+                                        layer.msg("该投票账号已进行过投票!", {time: 1000}, function () {
+                                            break;
                                         });
-                                    }, 500)
+                                    } else {
+                                        layer.close(index2);
+                                        tpzh = val;
+                                        var index = layui.layer.open({
+                                            title: "查看投票",
+                                            type: 2,
+                                            content: "../../../page/system/GradeRecord/DaFenBiaoFB.html?record_Id=" + record_Id + "&tpzh=" + tpzh,
+                                            success: function (layero, index) {
+                                                setTimeout(function () {
+                                                    layui.layer.tips('点击此处返回评测打分记录', '.layui-layer-setwin .layui-layer-close', {
+                                                        tips: 3
+                                                    });
+                                                }, 500)
+                                            }
+                                        });
+                                        //改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+                                        $(window).resize(function () {
+                                            layui.layer.full(index);
+                                        });
+                                        layui.layer.full(index);
+                                    }
                                 }
-                            });
-                            //改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
-                            $(window).resize(function () {
-                                layui.layer.full(index);
-                            });
-                            layui.layer.full(index);
+                            }
                         }
                     });
                 } else if (resId == "已结束") {

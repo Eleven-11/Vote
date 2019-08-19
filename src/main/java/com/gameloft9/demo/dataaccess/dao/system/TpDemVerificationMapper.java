@@ -13,7 +13,7 @@ public interface TpDemVerificationMapper {
 
     boolean addzh(TpDemVerification tpDemVerification);
 
-    List<String> findzh(Integer recordId);
+    List<TpDemVerification> findzh(Integer recordId);
 
     boolean delzh(String content);
 
